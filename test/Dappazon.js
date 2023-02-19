@@ -1,4 +1,5 @@
 const { expect } = require("chai")
+const { ethers } = require("hardhat")
 
 const tokens = (n) => {
   return ethers.utils.parseUnits(n.toString(), 'ether')
@@ -19,8 +20,9 @@ describe("Dappazon", () => {
 
   beforeEach(async () => {
     // Setup accounts
-    [deployer, buyer] = await ethers.getSigners()
 
+    [deployer, buyer] = await ethers.getSigners()
+    console.log(await ethers.getSigners());
     // Deploy contract
     const Dappazon = await ethers.getContractFactory("Dappazon")
     dappazon = await Dappazon.deploy()
